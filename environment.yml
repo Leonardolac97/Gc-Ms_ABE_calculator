@@ -1,0 +1,9 @@
+name: gc-ms-abe-calculator
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas>=2.0,<3.0
+  - matplotlib>=3.7,<4.0
+  - pyqt>=6.5,<7.0
+  - pip
