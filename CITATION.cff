@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "GC-MS ABE Calculator"
+type: software
+authors:
+  - family-names: "Almeida de Campos"
+    given-names: "Leonardo"
+    affiliation: "Karlsruhe Institute of Technology (KIT), Institute for Chemical Technology and Polymer Chemistry (ITCP)"
+version: "1.0.0"
+date-released: 2026-04-08
+doi: "https://doi.org/10.xxxxx/xxxxxxxx"
+repository-code: "https://github.com/Leonardolac97/GC-MS-ABE-calculator"
+license: "MIT"
+abstract: >
+  Python desktop application for processing GC-MS data from ABE mixture
+  reaction experiments, including selectivity and conversion calculations
+  with a PyQt6 graphical user interface.
+keywords:
+  - "GC-MS"
+  - "ABE"
+  - "catalysis"
+  - "data analysis"
+  - "PyQt6"
+  - "matplotlib"
