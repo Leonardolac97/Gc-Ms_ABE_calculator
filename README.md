@@ -1,52 +1,65 @@
 # GC-MS ABE Calculator
 
-A Python desktop application for processing GC-MS `.csv` files from ABE mixture reaction experiments. The tool loads a classified peak table, filters product entries marked as `KEEP`, excludes reactants from the selectivity basis, and generates:
+A Python desktop application for processing GC-MS `.csv` files from ABE mixture reaction experiments. The tool loads a classified peak table, filters product entries marked as `KEEP`, excludes reactants from the selectivity basis, and generates selectivity and conversion metrics.
 
-- family selectivity
-- carbon-number selectivity
-- carbon-bin selectivity (`C2–C6` and `C7–C15`)
-- selected-product selectivity
-- reactant conversion, when a baseline (`0 h`) file or manual initial area percentages are provided
+---
 
-The graphical user interface is built with PyQt6 and the plots are generated with Matplotlib.
+## Expected input file structure
+
+The input CSV must follow a structured peak table format (e.g., exported from GC–MS software).
+
+### Required columns
+
+| Column Name       | Description |
+|------------------|------------|
+| RT               | Retention time (min) |
+| Compound Name    | Identified compound name |
+| Formula          | Molecular formula (e.g., C7H14O) |
+| Carbon Number    | Optional; inferred from formula if missing |
+| Area %           | Relative peak area (%) |
+| Classification   | Must include `KEEP`, `DISCARD`, or `FLAG` |
+| Notes            | Optional annotation |
+| Family           | Chemical family (e.g., Alcohols, Ketones, Reactants) |
+
+### Example input (excerpt)
+
+| RT   | Compound Name      | Formula | Carbon Number | Area % | Classification | Notes                  | Family     |
+|------|------------------|---------|---------------|--------|----------------|------------------------|-----------|
+| 2.91 | Ethanol           | C2H6O   | 2             | 12.3   | KEEP           | Reactant               | Reactants |
+| 3.01 | Acetone           | C3H6O   | 3             | 10.1   | KEEP           | Reactant               | Reactants |
+| 3.14 | Isopropanol       | C3H8O   | 3             | 4.2    | KEEP           | Transfer hydrogenation | Alcohols  |
+| 5.13 | 1-Butanol         | C4H10O  | 4             | 8.5    | KEEP           | Reactant               | Reactants |
+
+### Important rules
+
+- Only rows with `Classification == KEEP` are used  
+- Rows with `Family == Reactants` are **excluded** from selectivity calculations  
+- `Area %` is used as the calculation basis  
+- Carbon number is inferred automatically if not provided  
+
+---
+
+## Data origin
+
+The input files are assumed to be exported from GC–MS analysis software (e.g., Agilent ChemStation or MassHunter) and manually classified into:
+
+- `KEEP` → valid products  
+- `DISCARD` → noise or irrelevant peaks  
+- `FLAG` → optional review  
+
+The workflow is designed for catalytic ABE upgrading experiments.
+
+---
 
 ## Features
 
-- Loads a sample `.csv` file and processes the data automatically
-- Optional baseline (`0 h`) import for conversion calculations
-- Optional manual entry of initial reactant area percentages
-- Exports processed tables as `.csv`
-- Creates plots in separate tabs for:
-  - family selectivity
-  - carbon number
-  - carbon bins
-  - selected products
-  - conversion
-- Opens the results folder directly from the interface
+- Load sample CSV files  
+- Optional baseline (`0 h`) for conversion calculations  
+- Manual A0 input for flexibility  
+- Automatic export of processed data  
+- Interactive plots using PyQt6 and Matplotlib  
 
-## Expected input columns
-
-The sample CSV file must contain the following columns:
-
-- `RT`
-- `Compound Name`
-- `Formula`
-- `Area %`
-- `Classification`
-- `Notes`
-- `Family`
-
-If `Carbon Number` is not present, it is inferred from the molecular formula.
-
-## How it works
-
-1. The application reads the input CSV.
-2. Only rows with `Classification == KEEP` are retained.
-3. Rows with `Family == Reactants` are excluded from the product selectivity basis.
-4. Selectivity is calculated from the remaining `Area %` values.
-5. Reactant conversion is computed from:
-   - a baseline file (`0 h`), or
-   - manually entered initial area percentages (`A0`)
+---
 
 ## Installation
 
@@ -62,8 +75,10 @@ python GC_MS_ABE_calculator.py
 
 ```bash
 python -m venv .venv
+
 # Windows
 .venv\Scripts\activate
+
 # macOS / Linux
 source .venv/bin/activate
 
@@ -82,14 +97,6 @@ After loading a sample, the application creates a results folder next to the inp
 - `product_selectivity.csv`
 - `conversion.csv` (only when conversion can be calculated)
 
-## Notes for publication
-
-Before publishing the repository, it is recommended to:
-
-- remove personal or internal-only comments that are not needed for public release
-- confirm that the target product aliases match the intended chemistry scope
-- add a short example input file or screenshot if redistribution is allowed
-- state the license clearly in the repository root
 
 ## Citation
 
