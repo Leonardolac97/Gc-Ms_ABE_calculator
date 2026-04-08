@@ -9,7 +9,7 @@ authors:
 version: "1.0.0"
 date-released: 2026-04-08
 doi: "https://doi.org/10.xxxxx/xxxxxxxx"
-repository-code: "https://github.com/Leonardolac97/GC-MS-ABE-calculator"
+repository-code: "https://github.com/Leonardolac97/Gc-Ms_ABE_calculator"
 license: "MIT"
 abstract: >
   Python desktop application for processing GC-MS data from ABE mixture
