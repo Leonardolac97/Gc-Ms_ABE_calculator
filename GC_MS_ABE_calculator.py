@@ -1,8 +1,6 @@
 # ██████████████████████████████████████████████████████████████████████
 # █  GC-MS calculator for ABE mixtures reaction                        █
 # █                                                                    █
-# █  Author: Leonardo Almeida de Campos                                █
-# █  Karlsruhe Institute of Technology (KIT)-ITCP                      █
 # █  AI-assisted: OpenAI ChatGPT (GPT-5.3)                             █
 # █  04.2026                                                           █
 # ██████████████████████████████████████████████████████████████████████
