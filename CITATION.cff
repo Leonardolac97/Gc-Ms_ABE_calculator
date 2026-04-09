@@ -6,6 +6,12 @@ authors:
   - family-names: "Almeida de Campos"
     given-names: "Leonardo"
     affiliation: "Karlsruhe Institute of Technology (KIT), Institute for Chemical Technology and Polymer Chemistry (ITCP)"
+  - family-names: "Lennon Sheppard"
+    given-names: "Thomas"
+    affiliation: "Technische Universität Wien (TUWien)"
+  - family-names: "Grunwaldt"
+    given-names: "Jan-Dierk"
+    affiliation: "Karlsruhe Institute of Technology (KIT), Institute for Chemical Technology and Polymer Chemistry (ITCP)"
 version: "1.0.0"
 date-released: 2026-04-08
 doi: "https://doi.org/10.35097/m137bhkrvh8ufk5q"
